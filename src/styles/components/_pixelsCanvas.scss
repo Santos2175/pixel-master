@@ -1,0 +1,29 @@
+.pixel-canvas-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px;
+  position: relative;
+}
+
+.canvas {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.grid {
+  //   height: 800px;
+  //   width: 800px;
+  display: grid;
+  grid-template-columns: repeat(60, 1fr);
+  grid-template-rows: repeat(60, 1fr);
+
+  //   gap: 1px;
+}
+
+.pixel {
+  width: 15px;
+  height: 15px;
+  cursor: pointer;
+}

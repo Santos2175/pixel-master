@@ -1,11 +1,11 @@
-import { useState } from 'react';
-import './App.css';
+import PixelsCanvas from './components/PixelsCanvas';
+import { AppProvider } from './context/AppContext';
 
 function App() {
   return (
-    <>
-      <h1>Hello world</h1>
-    </>
+    <AppProvider>
+      <PixelsCanvas />
+    </AppProvider>
   );
 }
 
