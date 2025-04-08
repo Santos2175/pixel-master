@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useAppContext } from '../context/AppContext.jsx';
-import ColorPalette from './ColorPalette.jsx';
+import ColorPicker from './ColorPicker.jsx';
 
 const Toolbar = () => {
   const { setSelectedColor } = useAppContext();
@@ -8,6 +8,7 @@ const Toolbar = () => {
   const [isDragging, setIsDragging] = useState(false);
   const [offset, setOffset] = useState({ x: 0, y: 0 });
   const [position, setPosition] = useState({ top: 20, left: 20 });
+  const [isColorPickerVisible, setIdColorPickerVisible] = useState(false);
 
   const handleEraserToggle = () => {
     setIsEraserActive(!isEraserActive);
@@ -32,6 +33,10 @@ const Toolbar = () => {
 
   const handleMouseUp = () => {
     setIsDragging(false);
+  };
+
+  const toggleColorPicker = () => {
+    setIdColorPickerVisible(!isColorPickerVisible);
   };
 
   useEffect(() => {
@@ -59,7 +64,12 @@ const Toolbar = () => {
         transform: `translate(${position.left}px, ${position.top}px)`,
       }}
       onMouseDown={handleMouseDown}>
-      <ColorPalette />
+      {/* <ColorPalette /> */}
+      <div className='color-picker-icon' onClick={toggleColorPicker}>
+        🎨
+      </div>
+
+      {isColorPickerVisible && <ColorPicker />}
       <div className='eraser-tool'>
         <button
           onClick={handleEraserToggle}

@@ -1,17 +1,16 @@
-import { useState, useEffect, useRef } from 'react';
+import { useState, useRef } from 'react';
+import { useAppContext } from '../context/AppContext';
 
 export default function ColorPicker() {
-  const [selectedColor, setSelectedColor] = useState('#BD10E0');
+  const { selectedColor, setSelectedColor } = useAppContext();
   const [rgbValues, setRgbValues] = useState({ r: 189, g: 16, b: 224 });
   const [activeToolIndex, setActiveToolIndex] = useState(0);
   const [colorHistory, setColorHistory] = useState(['#BD10E0']);
   const [historyIndex, setHistoryIndex] = useState(0);
-  const [isEyedropperActive, setIsEyedropperActive] = useState(false);
 
   const gradientRef = useRef(null);
   const canvasRef = useRef(null);
 
-  // Color palettes from the image
   const colorPalette = [
     [
       '#c62828',
@@ -35,8 +34,9 @@ export default function ColorPicker() {
     ],
   ];
 
-  // Update color and add to history
   const updateColor = (newColor) => {
+    if (!/^#([0-9A-F]{3}){1,2}$/i.test(newColor)) return; // Ignore invalid hex input
+
     if (newColor !== selectedColor) {
       const newHistory = colorHistory.slice(0, historyIndex + 1);
       newHistory.push(newColor);
@@ -51,7 +51,6 @@ export default function ColorPicker() {
     setRgbValues(hexToRgb(newColor));
   };
 
-  // Handle cursor/crosshair selection from the gradient
   const handleGradientClick = (e) => {
     if (activeToolIndex !== 0) return;
 
@@ -69,7 +68,22 @@ export default function ColorPicker() {
     updateColor(hexColor);
   };
 
-  // Helper functions for color conversion
+  const handleEyeDropperClick = () => {
+    if (window.EyeDropper) {
+      const eyeDropper = new EyeDropper();
+      eyeDropper
+        .open()
+        .then((result) => {
+          updateColor(result.sRGBHex);
+        })
+        .catch((e) => {
+          console.error('Error selecting color:', e);
+        });
+    } else {
+      alert('EyeDropper API is not supported in your browser.');
+    }
+  };
+
   const hsvToRgb = (h, s, v) => {
     let r, g, b;
     const i = Math.floor(h / 60) % 6;
@@ -137,6 +151,26 @@ export default function ColorPicker() {
     return { r, g, b };
   };
 
+  const handleUndo = () => {
+    if (historyIndex > 0) {
+      const newIndex = historyIndex - 1;
+      setHistoryIndex(newIndex);
+      const prevColor = colorHistory[newIndex];
+      setSelectedColor(prevColor);
+      setRgbValues(hexToRgb(prevColor));
+    }
+  };
+
+  const handleRedo = () => {
+    if (historyIndex < colorHistory.length - 1) {
+      const newIndex = historyIndex + 1;
+      setHistoryIndex(newIndex);
+      const nextColor = colorHistory[newIndex];
+      setSelectedColor(nextColor);
+      setRgbValues(hexToRgb(nextColor));
+    }
+  };
+
   return (
     <div className='color-picker'>
       <div className='tool-sidebar'>
@@ -148,14 +182,17 @@ export default function ColorPicker() {
 
         <button
           className={`tool-button ${activeToolIndex === 1 ? 'active' : ''}`}
-          onClick={() => setActiveToolIndex(1)}>
+          onClick={() => {
+            setActiveToolIndex(1);
+            handleEyeDropperClick();
+          }}>
           <span className='icon'>↗</span>
         </button>
 
         <button
           className='current-color'
           style={{ backgroundColor: selectedColor }}>
-          <span className='icon'>Current color</span>
+          <span className='icon'></span>
         </button>
 
         <button
@@ -166,20 +203,16 @@ export default function ColorPicker() {
 
         <button
           className={`undo-button ${historyIndex > 0 ? '' : 'disabled'}`}
-          onClick={() => {
-            /* Implement undo */
-          }}>
-          ↺
+          onClick={handleUndo}>
+          <span className='icon'>↺</span>
         </button>
 
         <button
           className={`redo-button ${
             historyIndex < colorHistory.length - 1 ? '' : 'disabled'
           }`}
-          onClick={() => {
-            /* Implement redo */
-          }}>
-          ↻
+          onClick={handleRedo}>
+          <span className='icon'> ↻</span>
         </button>
       </div>
 
@@ -206,24 +239,22 @@ export default function ColorPicker() {
               value={selectedColor}
               onChange={(e) => updateColor(e.target.value)}
             />
+            <p className='color-code'>Hex</p>
           </div>
 
           <div className='rgb-inputs'>
-            <input
-              type='number'
-              value={rgbValues.r}
-              onChange={(e) => updateColor(e.target.value)}
-            />
-            <input
-              type='number'
-              value={rgbValues.g}
-              onChange={(e) => updateColor(e.target.value)}
-            />
-            <input
-              type='number'
-              value={rgbValues.b}
-              onChange={(e) => updateColor(e.target.value)}
-            />
+            <div>
+              <input type='number' value={rgbValues.r} disabled />
+              <p className='color-code'>R</p>
+            </div>
+            <div>
+              <input type='number' value={rgbValues.g} disabled />
+              <p className='color-code'>G</p>
+            </div>
+            <div>
+              <input type='number' value={rgbValues.b} disabled />
+              <p className='color-code'>B</p>
+            </div>
           </div>
         </div>
 

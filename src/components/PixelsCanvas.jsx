@@ -81,7 +81,6 @@
 import React, { useEffect, useState } from 'react';
 import { useAppContext } from '../context/AppContext';
 import Toolbar from './Toolbar';
-import ColorPicker from './ColorPicker';
 
 const PixelCanvas = () => {
   const { selectedColor, setSelectedColor } = useAppContext();
@@ -112,7 +111,6 @@ const PixelCanvas = () => {
   return (
     <div className='pixel-canvas-container'>
       <Toolbar /> {/* Include the Toolbar */}
-      <ColorPicker />
       <div className='canvas'>
         <div className='grid'>
           {pixels.map((pixel, index) => (
