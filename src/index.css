@@ -1,5 +1,6 @@
 .toolbar {
   position: absolute;
+  top: 50%;
   display: flex;
   justify-content: flex-start;
   gap: 15px;
