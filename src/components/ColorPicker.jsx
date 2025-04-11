@@ -173,7 +173,7 @@ export default function ColorPicker() {
 
   return (
     <div className='color-picker'>
-      <div className='tool-sidebar'>
+      {/* <div className='tool-sidebar'>
         <button
           className={`tool-button ${activeToolIndex === 0 ? 'active' : ''}`}
           onClick={() => setActiveToolIndex(0)}>
@@ -214,7 +214,7 @@ export default function ColorPicker() {
           onClick={handleRedo}>
           <span className='icon'> ↻</span>
         </button>
-      </div>
+      </div> */}
 
       <div className='main-area'>
         <div

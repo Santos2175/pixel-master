@@ -84,7 +84,7 @@ import Toolbar from './Toolbar';
 
 const PixelCanvas = () => {
   const { selectedColor, setSelectedColor } = useAppContext();
-  const [gridSize] = useState(60);
+  const [gridSize] = useState(35);
   const [pixels, setPixelData] = useState([]);
   const [isEraserActive, setIsEraserActive] = useState(false);
 
@@ -110,7 +110,6 @@ const PixelCanvas = () => {
 
   return (
     <div className='pixel-canvas-container'>
-      <Toolbar /> {/* Include the Toolbar */}
       <div className='canvas'>
         <div className='grid'>
           {pixels.map((pixel, index) => (
