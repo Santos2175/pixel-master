@@ -15,7 +15,7 @@
 }
 
 body {
-  background-color: #fff;
+  background-color: #eef2f6;
 }
 
 ul {
@@ -140,6 +140,11 @@ html {
 .header .right .nav-item:hover {
   background: #4f545e;
 }
+.header .left .active,
+.header .center .active,
+.header .right .active {
+  background: #4f545e;
+}
 .header .left {
   width: 40%;
 }
@@ -180,6 +185,49 @@ html {
 .header .right .faqIcon {
   color: #cf6ee4;
   margin-right: 0.4rem;
+}
+
+.leaderboard {
+  width: 255px;
+  height: calc(100% - 5.4rem);
+  background-color: #fff;
+  position: fixed;
+  top: 5.4rem;
+  bottom: 0;
+  left: 0;
+  z-index: 4;
+  border-right: 1px solid #d4dfe9;
+  display: flex;
+  flex-direction: column;
+  overflow: auto;
+  transform: translateX(-100%);
+  opacity: 0;
+  transition: transform 0.5s ease-in-out, opacity 0.5s ease-in-out;
+}
+.leaderboard.active {
+  opacity: 1;
+  transform: translateX(0);
+}
+.leaderboard .loading {
+  color: #c2cbd3;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-grow: 1;
+  font-size: 1.4rem;
+}
+.leaderboard .close {
+  background: transparent;
+  border: none;
+  outline: none;
+  color: #92acc5;
+  position: absolute;
+  top: 1.2rem;
+  right: 1.2rem;
+  cursor: pointer;
+}
+.leaderboard .close i {
+  font-size: 1.6rem;
 }
 
 .toolbar {

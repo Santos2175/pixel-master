@@ -1,17 +1,34 @@
 import React, { useState } from 'react';
 import Faq from './modal/Faq';
+import LeaderBoard from './LeaderBoard';
 
 const Header = () => {
   const [showModal, setShowModal] = useState(false);
+  const [showLeaderBoard, setShowLeaderBoard] = useState(false);
+  const [activeItem, setActiveItem] = useState(null);
 
   //   it pop ups the modal
   const handleFaqClick = () => {
+    setActiveItem('faq');
     setShowModal(true);
   };
 
   //   it closes the modal
   const closeModal = () => {
+    setActiveItem(null);
     setShowModal(false);
+  };
+
+  // show leaderboard
+  const handleLeaderBoardClick = () => {
+    setActiveItem('leaderboard');
+    setShowLeaderBoard(true);
+  };
+
+  // close the leaderboard
+  const closeLeaderBoard = () => {
+    setActiveItem(null);
+    setShowLeaderBoard(false);
   };
 
   return (
@@ -19,7 +36,11 @@ const Header = () => {
       <header className='header'>
         {/* left portion */}
         <div className='left'>
-          <div className='nav-item'>
+          <div
+            className={`nav-item ${
+              activeItem === 'leaderboard' ? 'active' : ''
+            }`}
+            onClick={handleLeaderBoardClick}>
             <i className='iconfont icon-trophy trophy'></i>
             <span>menu.leaderboard</span>
           </div>
@@ -57,6 +78,15 @@ const Header = () => {
         </div>
       </header>
 
+      {/* leaderboard */}
+      {showLeaderBoard && (
+        <LeaderBoard
+          isVisible={showLeaderBoard}
+          closeLeaderBoard={closeLeaderBoard}
+        />
+      )}
+
+      {/* faq modal */}
       {showModal && (
         <div className='modal-overlay'>
           <Faq closeModal={closeModal} />
