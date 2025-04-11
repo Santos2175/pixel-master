@@ -48,7 +48,7 @@ const Header = () => {
         {/* right portion */}
         <div className='right'>
           <div className='nav-item'>
-            <img src='' alt='fire png' />
+            <img src='/fire.png' alt='fire png' />
           </div>
           <div className='nav-item' onClick={handleFaqClick}>
             <i className='iconfont icon-questioncircle faqIcon'></i>
