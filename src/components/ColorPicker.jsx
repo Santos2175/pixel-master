@@ -173,49 +173,6 @@ export default function ColorPicker() {
 
   return (
     <div className='color-picker'>
-      {/* <div className='tool-sidebar'>
-        <button
-          className={`tool-button ${activeToolIndex === 0 ? 'active' : ''}`}
-          onClick={() => setActiveToolIndex(0)}>
-          <span className='icon'>⊕</span>
-        </button>
-
-        <button
-          className={`tool-button ${activeToolIndex === 1 ? 'active' : ''}`}
-          onClick={() => {
-            setActiveToolIndex(1);
-            handleEyeDropperClick();
-          }}>
-          <span className='icon'>↗</span>
-        </button>
-
-        <button
-          className='current-color'
-          style={{ backgroundColor: selectedColor }}>
-          <span className='icon'></span>
-        </button>
-
-        <button
-          className={`tool-button ${activeToolIndex === 3 ? 'active' : ''}`}
-          onClick={() => setActiveToolIndex(3)}>
-          <span className='icon'>✏️</span>
-        </button>
-
-        <button
-          className={`undo-button ${historyIndex > 0 ? '' : 'disabled'}`}
-          onClick={handleUndo}>
-          <span className='icon'>↺</span>
-        </button>
-
-        <button
-          className={`redo-button ${
-            historyIndex < colorHistory.length - 1 ? '' : 'disabled'
-          }`}
-          onClick={handleRedo}>
-          <span className='icon'> ↻</span>
-        </button>
-      </div> */}
-
       <div className='main-area'>
         <div
           ref={gradientRef}
