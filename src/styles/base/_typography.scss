@@ -1,3 +1,6 @@
+@import url('/public/fonts/t14/style.css');
+@import url('/public/fonts/iconfont/style.css');
+
 html {
   // 62.5% of 16px = 10px which is 1rem.
   font-size: 62.5%;
@@ -8,4 +11,11 @@ html {
 body,
 html {
   -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+}
+
+.iconfont {
+  font-family: 'iconfont' !important;
+  font-size: 1.6rem;
+  font-style: normal;
+  -webkit-font-smoothing: antialiased;
 }

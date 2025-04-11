@@ -1,0 +1,85 @@
+@use '../base/index' as *;
+
+.header {
+  display: flex;
+  align-items: center;
+  background: $color-bg-primary;
+  height: 5.4rem;
+  position: relative;
+
+  .left,
+  .center,
+  .right {
+    color: #fff;
+    height: 100%;
+    font-weight: 700;
+
+    .nav-item {
+      display: inline-flex;
+      align-items: center;
+      border-left: 1px solid transparent;
+      border-right: 1px solid transparent;
+      color: #fff;
+      cursor: pointer;
+      font-size: 1.5rem;
+      font-weight: 500;
+      height: 5.4rem;
+      padding: 0 1.6rem;
+      position: relative;
+      vertical-align: top;
+
+      &:hover {
+        background: #4f545e;
+      }
+    }
+  }
+
+  //  left portion
+  .left {
+    width: 40%;
+
+    .trophy {
+      margin-right: 0.4rem;
+      color: #ee9011;
+    }
+
+    .language {
+      max-width: 13rem;
+      padding: 0 1rem;
+      background: none;
+      border: none;
+      border-radius: 0 !important;
+      outline: none;
+      font-weight: 700;
+
+      .option {
+        background-color: $color-bg-primary;
+      }
+    }
+  }
+
+  //   center portion
+  .center {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.6rem;
+    line-height: 1;
+    width: 20%;
+  }
+
+  // right portion
+  .right {
+    width: 40%;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    font-size: 1.4rem;
+
+    // faq icon
+    .faqIcon {
+      color: #cf6ee4;
+      margin-right: 0.4rem;
+    }
+  }
+}
