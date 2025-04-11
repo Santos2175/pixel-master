@@ -1,0 +1,30 @@
+@use './variables' as *;
+
+// resets
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background-color: $color-bg-secondary;
+}
+
+ul {
+  list-style-type: none;
+}
+
+a,
+a:visited {
+  text-decoration: none;
+  color: $color-text-darkgray;
+}
+
+h1,
+h2,
+h3 {
+  margin: 0;
+}

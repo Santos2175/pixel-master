@@ -1,4 +1,12 @@
+// layout
+@use './layout/layout';
+
+// base components
+@use './base/index';
+
 // components
+@use './components/header';
+@use './components/leaderboard';
 @use './components/toolbar';
 @use './components/colorPicker';
 @use './components/pixelsCanvas';
