@@ -4,6 +4,9 @@
 // base components
 @use './base/index';
 
+// modal
+@use './components/modal/Faq';
+
 // components
 @use './components/header';
 @use './components/leaderboard';
